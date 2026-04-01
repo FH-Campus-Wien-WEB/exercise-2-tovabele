@@ -21,8 +21,18 @@ app.get('/movies', function (req, res) {
 
 // Configure a 'get' endpoint for a specific movie
 app.get('/movies/:imdbID', function (req, res) {
-  //console.log(imdbID)
-  res.json(movieModel.movies.imdbID)
+  const requestedID = req.params.imdbID
+//  tt0083658
+  const movie = movieModel.movies[requestedID]
+//  const movie = movieModel.movies.find(m => m.imdbID === requestedID)
+  console.log(requestedID)
+  console.log(movieModel.movies.requestedID)
+  
+  if (movie) {
+    res.json(movie);
+  } else {
+    res.status(404).send("Movie not found"); // Handle missing data
+  }
 })
 
 /* Task 3.1 and 3.2.
