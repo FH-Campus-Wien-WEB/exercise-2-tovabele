@@ -13,16 +13,16 @@ app.use(express.static(path.join(__dirname, 'files')));
 
 // Configure a 'get' endpoint for all movies..
 app.get('/movies', function (req, res) {
-  /* Task 1.2. Remove the line below and eturn the movies from 
-     the model as an array */
-  res.sendStatus(404)
+  /* Task 1.2. Return the movies from the model as an array */
+  //console.log("sending movie json")
+    res.json(movieModel)
+
 })
 
 // Configure a 'get' endpoint for a specific movie
 app.get('/movies/:imdbID', function (req, res) {
-  /* Task 2.1. Remove the line below and add the 
-    functionality here */
-  res.sendStatus(404)
+  //console.log(imdbID)
+  res.json(movieModel.movies.imdbID)
 })
 
 /* Task 3.1 and 3.2.
