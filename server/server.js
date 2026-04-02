@@ -22,7 +22,7 @@ app.get('/movies', function (req, res) {
 // Configure a 'get' endpoint for a specific movie
 app.get('/movies/:imdbID', function (req, res) {
   const requestedID = req.params.imdbID
-//  tt0083658
+//  test ID: tt0083658
   const movie = movieModel.movies[requestedID]
 //  const movie = movieModel.movies.find(m => m.imdbID === requestedID)
   console.log(requestedID)
