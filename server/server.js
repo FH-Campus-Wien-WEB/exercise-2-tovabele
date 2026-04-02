@@ -6,7 +6,7 @@ const movieModel = require('./movie-model.js');
 const app = express();
 
 // Parse urlencoded bodies
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 // Serve static content in directory 'files'
 app.use(express.static(path.join(__dirname, 'files')));
@@ -15,21 +15,24 @@ app.use(express.static(path.join(__dirname, 'files')));
 app.get('/movies', function (req, res) {
   /* Task 1.2. Return the movies from the model as an array */
   //console.log("sending movie json")
-    res.json(movieModel)
+  //console.log(movieModel)
+  //res.json(movieModel)
+  res.json(Object.values(movieModel))
 
 })
 
 // Configure a 'get' endpoint for a specific movie
 app.get('/movies/:imdbID', function (req, res) {
   const requestedID = req.params.imdbID
-//  test ID: tt0083658
+  //  test ID: tt0083658
   const movie = movieModel.movies[requestedID]
-//  const movie = movieModel.movies.find(m => m.imdbID === requestedID)
-  console.log(requestedID)
-  console.log(movieModel.movies.requestedID)
-  
+  //  const movie = movieModel.movies.find(m => m.imdbID === requestedID)
+  //console.log(requestedID)
+  //console.log(movieModel.movies.requestedID)
+  //console.log(movie)
+
   if (movie) {
-    res.json(movie);
+    res.json(Object.values(movie));
   } else {
     res.status(404).send("Movie not found"); // Handle missing data
   }
