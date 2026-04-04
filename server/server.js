@@ -26,7 +26,7 @@ app.get('/movies/:imdbID', function (req, res) {
   //console.log(requestedID)
 
   if (movie) {
-    res.json(Object.values(movie));
+    res.json(movie);
   } else {
     res.status(404).send("Movie not found"); // Handle missing data
   }
