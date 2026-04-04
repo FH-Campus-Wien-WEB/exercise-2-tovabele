@@ -15,21 +15,15 @@ app.use(express.static(path.join(__dirname, 'files')));
 app.get('/movies', function (req, res) {
   /* Task 1.2. Return the movies from the model as an array */
   //console.log("sending movie json")
-  //console.log(movieModel)
-  //res.json(movieModel)
-  res.json(Object.values(movieModel))
-
+  res.json(Object.values(movieModel.movies))
 })
 
 // Configure a 'get' endpoint for a specific movie
 app.get('/movies/:imdbID', function (req, res) {
   const requestedID = req.params.imdbID
-  //  test ID: tt0083658
   const movie = movieModel.movies[requestedID]
-  //  const movie = movieModel.movies.find(m => m.imdbID === requestedID)
+  //  test ID: tt0083658
   //console.log(requestedID)
-  //console.log(movieModel.movies.requestedID)
-  //console.log(movie)
 
   if (movie) {
     res.json(Object.values(movie));
