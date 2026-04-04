@@ -1,4 +1,5 @@
 function setMovie(movie) {
+  console.log(movie)
   for (const element of document.forms[0].elements) {
     const name = element.id;
     const value = movie[name];
@@ -79,11 +80,11 @@ function putMovie() {
 
 /** Loading and setting the movie data for the movie with the passed imdbID */
 const imdbID = new URLSearchParams(window.location.search).get("imdbID");
-
 const xhr = new XMLHttpRequest();
 xhr.open("GET", "/movies/" + imdbID);
 xhr.onload = function () {
   if (xhr.status === 200) {
+    //console.log('Server sent:' + JSON.parse(xhr.responseText))
     setMovie(JSON.parse(xhr.responseText));
   } else {
     alert(

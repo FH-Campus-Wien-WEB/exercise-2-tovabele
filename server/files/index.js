@@ -2,7 +2,7 @@ window.onload = function () {
   const xhr = new XMLHttpRequest();
 
   function generateUnorderedList(div, title, entries) {
-    const header = document.createElement('h1')
+    const header = document.createElement('h2')
     header.textContent = title
     const list = document.createElement('ul')
     list.classList.add('unsortedlist')
@@ -29,17 +29,19 @@ window.onload = function () {
         //horrible exercise 1 code here:
         const article = document.createElement('article')
         article.classList.add('article')
-
+        article.id = movie.imdbID
+        
         //ratings on top
-        const ratingList = document.createElement('p')
+        const ratingList = document.createElement('div')
         ratingList.classList.add('ratings')
         const metascore = document.createElement('span')
-        metascore.textContent = 'Metacritics: ' + movie.Metascore + '%'
+        metascore.textContent = 'Metacritics: ' + movie.Metascore + '%  | '
         const imdbrating = document.createElement('span')
         imdbrating.textContent = 'IMDB: ' + movie.imdbRating + '/10'
         ratingList.append(metascore, imdbrating)
 
         const poster = document.createElement('img')
+        poster.classList.add('poster')
         poster.src = movie.Poster
 
         const titleArea = document.createElement('div')
@@ -49,18 +51,25 @@ window.onload = function () {
         const editButton = document.createElement('button')
         editButton.classList.add('editbutton')
         editButton.textContent = 'Edit'
+        editButton.onclick = function () {
+          location.href = 'edit.html?imdbID=' + article.id
+        }
 
-        titleArea.append(header,editButton)
+        titleArea.append(header, editButton)
 
-        const releaseList = document.createElement('span')
+
+        const releaseList = document.createElement('div')
         releaseList.classList.add('releaseList')
-        const runtime = document.createElement('li')
+        const runtime = document.createElement('span')
         const hours = Math.floor(movie.Runtime / 60)
         const mins = movie.Runtime % 60
-        runtime.textContent = 'Runtime: ' + hours + 'h ' + mins + 'm'
+        runtime.textContent = 'Runtime: ' + hours + 'h ' + mins + 'm' + ' | '
 
-        const releasedOn = document.createElement('li')
+        const releasedOn = document.createElement('span')
         releasedOn.textContent = 'Released on ' + movie.Released
+        releaseList.append(runtime)
+        releaseList.append(releasedOn)
+
 
         const genresDiv = document.createElement('div')
         // add flexbox to genre css class
@@ -73,12 +82,13 @@ window.onload = function () {
           genresDiv.appendChild(span)
         })
 
-        generateUnorderedList(article, "Director", movie.Directors)
-        generateUnorderedList(article, "Writer", movie.Writers)
-        generateUnorderedList(article, "Actor", movie.Actors)
-
+        const infoArea = document.createElement('div')
         const plot = document.createElement('div')
         plot.textContent = movie.Plot
+        infoArea.append(plot)
+        generateUnorderedList(infoArea, "Director", movie.Directors)
+        generateUnorderedList(infoArea, "Writer", movie.Writers)
+        generateUnorderedList(infoArea, "Actor", movie.Actors)
 
         //})
         /* Task 1.3. Add your code from exercise 1 here 
@@ -86,13 +96,11 @@ window.onload = function () {
         to pass this test */
 
         article.append(ratingList)
-        bodyElement.append(poster)
-        bodyElement.append(titleArea)
-        bodyElement.append(releaseList)
-        releaseList.append(runtime)
-        releaseList.append(releasedOn)
+        article.append(poster)
+        article.append(titleArea)
+        article.append(releaseList)
         article.append(genresDiv)
-        article.append(plot)
+        article.append(infoArea)
         bodyElement.append(article)
       }
 
