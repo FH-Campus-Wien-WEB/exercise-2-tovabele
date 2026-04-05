@@ -13,6 +13,10 @@
   <main>
     <form>
       <input type="hidden" id="imdbID">
+      <div>
+        <label for="Title">Title</label>
+        <input id="Title">
+      </div>
 
       <div>
         <label for="Genres">Genres</label>
@@ -48,10 +52,6 @@
         <textarea id="Plot" rows="5" required></textarea>
       </div>
       <div>
-        <label for="Title">Title</label>
-        <input id="Title">
-      </div>
-      <div>
         <label for="Runtime">Runtime</label>
         <input id="Runtime">
       </div>
@@ -69,7 +69,7 @@
       </div>
       <div>
         <label for="Actors">Actors</label>
-        <input id="">
+        <input id="Actors">
       </div>
       <div>
         <label for="Poster">Poster</label>
@@ -84,8 +84,8 @@
         <input id="imdbRating">
       </div>
     </form>
-    <button id="Cancel">Cancel</button>
-    <button id="Submit">Submit</button>
+    <input type="button" onclick="location.href = 'index.html'" value="Cancel">
+    <input type="button" onclick='putMovie()' value="Save">
 
   </main>
 </body>
