@@ -1,5 +1,4 @@
 function setMovie(movie) {
-  console.log(movie)
   for (const element of document.forms[0].elements) {
     const name = element.id;
     const value = movie[name];
@@ -60,6 +59,10 @@ function getMovie() {
 }
 
 function putMovie() {
+  console.log('put movie function')
+  const movie = getMovie()
+  //console.log(movie)
+  console.log("PUT", "/movies/" + imdbID)
   /* Task 3.3. 
     - Get the movie data using getMovie()
     - Configure the XMLHttpRequest to make a PUT to /movies/:imdbID
@@ -67,6 +70,8 @@ function putMovie() {
     - Configure the function below as the onload event handler
     - Send the movie data as JSON
   */
+ xhr.open("PUT", "/movies/" + imdbID);
+
 
   const xhr = new XMLHttpRequest();
   xhr.onload = function () {
