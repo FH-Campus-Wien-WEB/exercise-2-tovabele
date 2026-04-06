@@ -86,7 +86,9 @@
     </form>
     <script>
       function returnToMovie() {
-        const returnPath = "index.html#" + imdbID
+        // doesn't work as the ids arent loaded yet as pat of the page
+        // const returnPath = "index.html#" + imdbID
+        const returnPath = history.back() + imdbID
         window.location.href = returnPath
       }
     </script>
