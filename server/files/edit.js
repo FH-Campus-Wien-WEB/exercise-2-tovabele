@@ -71,9 +71,7 @@ function putMovie() {
   
   // - Get the movie data using getMovie()
   const movie = getMovie()
-  console.log("putting ", movie)
-
-  xhr.open("PUT", "/movies/" + imdbID)
+  xhr.open("PUT", "/movies/" + movie.imdbID)
   xhr.setRequestHeader('content-type', ' application/json')
 
   xhr.onload = function () {
