@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const movieModel = require('./movie-model.js');
+console.log(Object.keys(movieModel.movies))
 
 const app = express();
 
@@ -32,18 +33,27 @@ app.get('/movies/:imdbID', function (req, res) {
   }
 })
 
-/* Task 3.1 and 3.2.
-   - Add a new PUT endpoint
-     and continue as described in the assignment */
+// Task 3.1 and 3.2 - Add a new PUT endpoint
+
 app.put('/movies/:imdbID', function (req, res) {
-  const requestedID = req.params.imdbID
-  const movie = movieModel.movies[requestedID]
+  const imdbID = req.params.imdbID
+  const data = req.body
+  console.log("PUT received", imdbID)
+
   //Check whether the movie sent by the client already exists 
-  if (movie){
+
+  if (imdbID in movieModel.movies){
+    console.log("exists")
+    //console.log(data)
+    movieModel.movies[imdbID] = data
     //update movie
+    res.status(200).send("Updating movie" + movieModel.movies[imdbID].Title)
+
   } else {
     //add movie
-    movieModel.join.movie
+    movieModel.movies[imdbID] = data
+    res.status(201).send("Adding movie:" + imdbID)
+
   }
 })
 

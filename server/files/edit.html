@@ -12,7 +12,7 @@
 <body>
   <main>
     <form>
-      <input type="hidden" id="imdbID">
+      <input type="hidden" id="imdbID" readonly>
       <div>
         <label for="Title">Title</label>
         <input type="text" id="Title">
@@ -84,14 +84,6 @@
         <input type="number" id="imdbRating">
       </div>
     </form>
-    <script>
-      function returnToMovie() {
-        // doesn't work as the ids arent loaded yet as pat of the page
-        // const returnPath = "index.html#" + imdbID
-        const returnPath = history.back() + imdbID
-        window.location.href = returnPath
-      }
-    </script>
     <input type="button" onclick="returnToMovie()" value="Cancel">
     <input type="button" onclick='putMovie()' value="Save">
 

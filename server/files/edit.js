@@ -58,29 +58,34 @@ function getMovie() {
   return movie;
 }
 
+// Task 3.3. 
+function returnToMovie() {
+  // doesn't work as the ids arent loaded yet as pat of the page
+  // const returnPath = "index.html#" + imdbID
+  const returnPath = history.back() + imdbID
+  window.location.href = returnPath
+}
+
 function putMovie() {
-  console.log('put movie function')
-  const movie = getMovie()
-  //console.log(movie)
-  console.log("PUT", "/movies/" + imdbID)
-  /* Task 3.3. 
-    - Get the movie data using getMovie()
-    - Configure the XMLHttpRequest to make a PUT to /movies/:imdbID
-    - Set the 'Content-Type' appropriately for JSON data
-    - Configure the function below as the onload event handler
-    - Send the movie data as JSON
-  */
- xhr.open("PUT", "/movies/" + imdbID);
-
-
   const xhr = new XMLHttpRequest();
+  
+  // - Get the movie data using getMovie()
+  const movie = getMovie()
+  console.log("putting ", movie)
+
+  xhr.open("PUT", "/movies/" + imdbID)
+  xhr.setRequestHeader('content-type', ' application/json')
+
   xhr.onload = function () {
-    if (xhr.status == 200 || xhr.status === 204) {
+    if (xhr.status == 200 || xhr.status === 201) {
       location.href = "index.html";
     } else {
       alert("Saving of movie data failed. Status code was " + xhr.status);
     }
   };
+  //  data conversion: JSON.stringify
+  xhr.send(JSON.stringify(movie))
+
 }
 
 /** Loading and setting the movie data for the movie with the passed imdbID */
@@ -94,9 +99,9 @@ xhr.onload = function () {
   } else {
     alert(
       "Loading of movie data failed. Status was " +
-        xhr.status +
-        " - " +
-        xhr.statusText,
+      xhr.status +
+      " - " +
+      xhr.statusText,
     );
   }
 };
