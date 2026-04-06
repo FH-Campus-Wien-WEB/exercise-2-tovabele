@@ -19,6 +19,7 @@ window.onload = function () {
 
   xhr.onload = function () {
     const bodyElement = document.querySelector("body");
+    const mainElement = document.querySelector('main')
     if (xhr.status == 200) {
       const movies = JSON.parse(xhr.responseText);
 
@@ -99,7 +100,8 @@ window.onload = function () {
         article.append(releaseList)
         article.append(genresDiv)
         article.append(infoArea)
-        bodyElement.append(article)
+        mainElement.append(article)
+        bodyElement.append(mainElement)
       }
 
     } else {
