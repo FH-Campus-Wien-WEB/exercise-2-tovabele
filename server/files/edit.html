@@ -15,7 +15,7 @@
       <input type="hidden" id="imdbID">
       <div>
         <label for="Title">Title</label>
-        <input id="Title">
+        <input type="text" id="Title">
       </div>
 
       <div>
@@ -49,15 +49,15 @@
       </div>
       <div>
         <label for="Plot">Plot</label>
-        <textarea id="Plot" rows="5" required></textarea>
+        <textarea type="text" id="Plot" rows="5" required></textarea>
       </div>
       <div>
         <label for="Runtime">Runtime</label>
-        <input id="Runtime">
+        <input type="number" id="Runtime">
       </div>
       <div>
         <label for="Released">Released</label>
-        <input id="Released">
+        <input type="date" id="Released">
       </div>
       <div>
         <label for="Directors">Directors</label>
@@ -65,26 +65,32 @@
       </div>
       <div>
         <label for="Writers">Writers</label>
-        <input id="Writers">
+        <input type="text" id="Writers">
       </div>
       <div>
         <label for="Actors">Actors</label>
-        <input id="Actors">
+        <input type="text" id="Actors">
       </div>
       <div>
         <label for="Poster">Poster</label>
-        <input id="Poster">
+        <input type="url" id="Poster">
       </div>
       <div>
         <label for="Metascore">Metascore</label>
-        <input id="Metascore">
+        <input type="number" id="Metascore">
       </div>
       <div>
         <label for="imdbRating">imdbRating</label>
-        <input id="imdbRating">
+        <input type="number" id="imdbRating">
       </div>
     </form>
-    <input type="button" onclick="location.href = 'index.html'" value="Cancel">
+    <script>
+      function returnToMovie() {
+        const returnPath = "index.html#" + imdbID
+        window.location.href = returnPath
+      }
+    </script>
+    <input type="button" onclick="returnToMovie()" value="Cancel">
     <input type="button" onclick='putMovie()' value="Save">
 
   </main>
