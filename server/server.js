@@ -43,13 +43,31 @@ app.put('/movies/:imdbID', function (req, res) {
   if (imdbID in movieModel.movies) {
     //update movie  
     movieModel.movies[imdbID] = data
+
     res.status(200).send("Updating movie" + movieModel.movies[imdbID].Title)
     console.log(Object.keys(movieModel.movies))
 
 
   } else {
     //add movie
-    movieModel.movies[imdbID] = data
+      const addedmovie = { imdbID: imdbID }
+
+      addedmovie.Title = data.Title
+      addedmovie.Runtime = data.Runtime
+      addedmovie.Released = data.Released
+      addedmovie.Genres = data.Genres
+      addedmovie.Metascore = data.Metascore
+      addedmovie.imdbRating = data.imdbRating
+      addedmovie.Plot = data.Plot
+      addedmovie.Directors = data.Directors
+      addedmovie.Writers = data.Writers
+      addedmovie.Actors = data.Actors
+      addedmovie.Poster = data.Poster
+     //doesn't work :
+     //movieModel.movies[imdbID] = data
+    //movieModel.movies[imdbID].imdbID = "imdbID"
+
+    movieModel.movies[imdbID] = addedmovie
     res.status(201).send("Adding movie:" + imdbID)
     console.log(Object.keys(movieModel.movies))
 
